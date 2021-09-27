@@ -5,10 +5,12 @@ public class BallBehaviour : MonoBehaviour
     private float DirectionX;
     private float DirectionY;
     private Vector3 initialVelocity;
-    private float minVelocity = 3f;
+    private float minVelocity = 1f;
 
     private Vector3 lastFrameVelocity;
     private Rigidbody rb;
+
+    private float ballVelocityUpCD;
     
     private void OnEnable()
     {
@@ -25,6 +27,12 @@ public class BallBehaviour : MonoBehaviour
 
     private void Update()
     {
+        ballVelocityUpCD -= Time.deltaTime;
+        if (ballVelocityUpCD <= 0)
+        {
+            ballVelocityUpCD = 15;
+            minVelocity += 1;
+        }
         lastFrameVelocity = rb.velocity;
     }
 
