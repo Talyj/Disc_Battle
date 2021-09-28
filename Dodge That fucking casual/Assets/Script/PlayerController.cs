@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private GameObject smashAreaPlayer;
+    [SerializeField] private Transform smashPointPlayer;
     private static Vector3 lastDirectionIntent;
     private static Vector3 lastDirectionIntent2;
-    private float playerSpeed = 4;
+    private float playerSpeed = 5f;
     public bool isPlayer;
 
     void Update() {
-        Movement(isPlayer);
+        Movement();
+        SmashDaBall();
         lastDirectionIntent = lastDirectionIntent.normalized;
         lastDirectionIntent2 = lastDirectionIntent2.normalized;
     }
@@ -23,7 +26,25 @@ public class PlayerController : MonoBehaviour
         }
     }
     
-    private void Movement(bool isPlayer) {
+    public void SmashDaBall()
+    {
+        if (isPlayer)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Smash();
+            }   
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                Smash();
+            }   
+        }
+    }
+    
+    private void Movement() {
         if (isPlayer) {
             if (Input.GetKey(KeyCode.Z)) {
                 WalkToUpPlayer1();
@@ -59,35 +80,55 @@ public class PlayerController : MonoBehaviour
         }
     }
     
-    private void WalkToUpPlayer1() {
-        lastDirectionIntent +=  Vector3.up;
-    }
-
-    private void WalkToUpPlayer2() {
-        lastDirectionIntent2 +=  Vector3.up;
-    }
-
-    private void WalkToLeftPlayer1() {
-        lastDirectionIntent +=  Vector3.left;
-    }
-
-    private void WalkToLeftPlayer2() {
-        lastDirectionIntent2 +=  Vector3.left;
+    public void WalkToUpPlayer1()
+    {
+        lastDirectionIntent +=  Vector3.up * playerSpeed * Time.deltaTime;
     }
     
-    private void WalkToDownPlayer1() {
-        lastDirectionIntent +=  Vector3.down;
-    }
-
-    private void WalkToDownPlayer2() {
-        lastDirectionIntent2 +=  Vector3.down;
+    public  void WalkToLeftPlayer1() {
+        lastDirectionIntent +=  Vector3.left * playerSpeed * Time.deltaTime;
     }
     
-    private void WalkToRightPlayer1() {
-        lastDirectionIntent +=  Vector3.right;
+    public void WalkToDownPlayer1() {
+        lastDirectionIntent +=  Vector3.down * playerSpeed * Time.deltaTime;
+    }
+    
+    public void WalkToRightPlayer1() {
+        lastDirectionIntent +=  Vector3.right * playerSpeed * Time.deltaTime;
     }
 
-    private void WalkToRightPlayer2() {
-        lastDirectionIntent2 +=  Vector3.right;
+    public void WalkToUpPlayer2(float timeCall = 0) {
+        for (int i = 0; i < timeCall; i++)
+        {
+            lastDirectionIntent2 +=  Vector3.up * playerSpeed * Time.deltaTime;
+        }
     }
+
+    public  void WalkToLeftPlayer2(float timeCall = 0) {
+        for (int i = 0; i < timeCall; i++)
+        {
+            lastDirectionIntent2 += Vector3.left * playerSpeed * Time.deltaTime;
+        }
+    }
+
+    public void WalkToDownPlayer2(float timeCall = 0) {
+        for (int i = 0; i < timeCall; i++)
+        {
+            lastDirectionIntent2 += Vector3.down * playerSpeed * Time.deltaTime;
+        }
+    }
+
+    public void WalkToRightPlayer2(float timeCall = 0) {
+        for (int i = 0; i < timeCall; i++)
+        {
+            lastDirectionIntent2 += Vector3.right * playerSpeed * Time.deltaTime;
+        }
+    }
+
+    public void Smash()
+    {
+        GameObject smash = Instantiate(smashAreaPlayer, smashPointPlayer.position, Quaternion.identity);
+        Destroy(smash, 0.3f);   
+    }
+
 }

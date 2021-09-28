@@ -21,7 +21,7 @@ public class BallBehaviour : MonoBehaviour
         Debug.Log("Y : " + DirectionY);
         initialVelocity = new Vector3(X, Y, 0);*/
         
-        initialVelocity = new Vector3(Random.Range(-10f, 10f), Random.Range(-10f, 10f), 0);
+        initialVelocity = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
         rb = GetComponent<Rigidbody>();
         rb.velocity = initialVelocity;
         ballVelocityUpCD = 15;
@@ -33,7 +33,7 @@ public class BallBehaviour : MonoBehaviour
         if (ballVelocityUpCD <= 0)
         {
             minVelocity += 2f;
-            ballVelocityUpCD = 10;
+            ballVelocityUpCD = 15;
         }
         lastFrameVelocity = rb.velocity;
     }
@@ -42,16 +42,17 @@ public class BallBehaviour : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("wall") || collision.gameObject.CompareTag("player"))
         {
-            Bounce(collision.contacts[0].normal);   
+            Bounce(collision.contacts[0].normal);
         }
 
         if (collision.gameObject.CompareTag("smash"))
         {
-            
+            minVelocity += 1;
+            Bounce(collision.contacts[0].normal);
         }
     }
 
-    private void Bounce(Vector3 collisionNormal)
+    public void Bounce(Vector3 collisionNormal)
     {
         var speed = lastFrameVelocity.magnitude;
         var direction = Vector3.Reflect(lastFrameVelocity.normalized, collisionNormal);
