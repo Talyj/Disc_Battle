@@ -1,4 +1,5 @@
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BallBehaviour : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class BallBehaviour : MonoBehaviour
         initialVelocity = new Vector3(Random.Range(-10f, 10f), Random.Range(-10f, 10f), 0);
         rb = GetComponent<Rigidbody>();
         rb.velocity = initialVelocity;
+        ballVelocityUpCD = 15;
     }
 
     private void Update()
@@ -30,15 +32,23 @@ public class BallBehaviour : MonoBehaviour
         ballVelocityUpCD -= Time.deltaTime;
         if (ballVelocityUpCD <= 0)
         {
-            ballVelocityUpCD = 15;
-            minVelocity += 1;
+            minVelocity += 2f;
+            ballVelocityUpCD = 10;
         }
         lastFrameVelocity = rb.velocity;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        Bounce(collision.contacts[0].normal);
+        if (collision.gameObject.CompareTag("wall") || collision.gameObject.CompareTag("player"))
+        {
+            Bounce(collision.contacts[0].normal);   
+        }
+
+        if (collision.gameObject.CompareTag("smash"))
+        {
+            
+        }
     }
 
     private void Bounce(Vector3 collisionNormal)
