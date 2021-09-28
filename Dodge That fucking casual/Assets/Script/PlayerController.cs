@@ -5,78 +5,89 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private static Vector3 lastDirectionIntent;
-    private float playerSpeed = 10;
+    private static Vector3 lastDirectionIntent2;
+    private float playerSpeed = 4;
     public bool isPlayer;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         Movement(isPlayer);
         lastDirectionIntent = lastDirectionIntent.normalized;
+        lastDirectionIntent2 = lastDirectionIntent2.normalized;
     }
 
-    private void FixedUpdate()
-    {
-        gameObject.transform.localPosition += lastDirectionIntent * (Time.deltaTime * playerSpeed);
+    private void FixedUpdate() {
+        if(isPlayer) {
+            gameObject.transform.localPosition += lastDirectionIntent * (Time.deltaTime * playerSpeed);
+        } else {
+            gameObject.transform.localPosition += lastDirectionIntent2 * (Time.deltaTime * playerSpeed);
+        }
     }
     
-    private void Movement(bool isPlayer)
-    {
-        if (isPlayer)
-        {
-            // Get key down (Z,Q,S,D) 
-            if (Input.GetKey(KeyCode.D))
-            {
-                lastDirectionIntent += Vector3.right;
+    private void Movement(bool isPlayer) {
+        if (isPlayer) {
+            if (Input.GetKey(KeyCode.Z)) {
+                WalkToUpPlayer1();
             }
-            if (Input.GetKey(KeyCode.Q))
-            {
-                lastDirectionIntent +=  Vector3.left;
+            if (Input.GetKey(KeyCode.Q)) {
+                WalkToLeftPlayer1();
             }
-            if (Input.GetKey(KeyCode.Z))
-            {
-                lastDirectionIntent +=  Vector3.up;
+            if (Input.GetKey(KeyCode.S)) {
+                WalkToDownPlayer1();
             }
-            if (Input.GetKey(KeyCode.S))
-            {
-                lastDirectionIntent +=  Vector3.down;
+            if (Input.GetKey(KeyCode.D)) {
+                WalkToRightPlayer1();
             }
-            if (!Input.GetKey(KeyCode.Z) && !Input.GetKey(KeyCode.Q) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
-            {
-                // Si on lâche la touche on s'arrête
+            if (!Input.GetKey(KeyCode.Z) && !Input.GetKey(KeyCode.Q) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D)) {
                 lastDirectionIntent = Vector3.zero;
             }
-        }
-        else
-        {
-            // Get key down (Z,Q,S,D) 
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                lastDirectionIntent += Vector3.right;
+        } else {
+            if (Input.GetKey(KeyCode.UpArrow)) {
+                WalkToUpPlayer2();
             }
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                lastDirectionIntent +=  Vector3.left;
+            if (Input.GetKey(KeyCode.LeftArrow)) {
+                WalkToLeftPlayer2();
             }
-            if (Input.GetKey(KeyCode.UpArrow))
-            {
-                lastDirectionIntent +=  Vector3.up;
+            if (Input.GetKey(KeyCode.DownArrow)) {
+                WalkToDownPlayer2();
             }
-            if (Input.GetKey(KeyCode.DownArrow))
-            {
-                lastDirectionIntent +=  Vector3.down;
+            if (Input.GetKey(KeyCode.RightArrow)) {
+                WalkToRightPlayer2();
             }
-            if (!Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.RightArrow))
-            {
-                // Si on lâche la touche on s'arrête
-                lastDirectionIntent = Vector3.zero;
+            if (!Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.RightArrow)) {
+                lastDirectionIntent2 = Vector3.zero;
             }
         }
+    }
+    
+    private void WalkToUpPlayer1() {
+        lastDirectionIntent +=  Vector3.up;
+    }
+
+    private void WalkToUpPlayer2() {
+        lastDirectionIntent2 +=  Vector3.up;
+    }
+
+    private void WalkToLeftPlayer1() {
+        lastDirectionIntent +=  Vector3.left;
+    }
+
+    private void WalkToLeftPlayer2() {
+        lastDirectionIntent2 +=  Vector3.left;
+    }
+    
+    private void WalkToDownPlayer1() {
+        lastDirectionIntent +=  Vector3.down;
+    }
+
+    private void WalkToDownPlayer2() {
+        lastDirectionIntent2 +=  Vector3.down;
+    }
+    
+    private void WalkToRightPlayer1() {
+        lastDirectionIntent +=  Vector3.right;
+    }
+
+    private void WalkToRightPlayer2() {
+        lastDirectionIntent2 +=  Vector3.right;
     }
 }
