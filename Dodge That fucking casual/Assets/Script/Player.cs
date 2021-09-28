@@ -5,7 +5,6 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public int life;
-    [SerializeField] GameObject enemy;
     [SerializeField] GameObject victoryDeathMenu;
 
 
