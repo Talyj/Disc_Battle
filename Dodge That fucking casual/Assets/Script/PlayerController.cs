@@ -35,12 +35,15 @@ public class PlayerController : MonoBehaviour
                 Smash();
             }   
         }
-        else if(!Events.isAI)
+        else 
         {
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (!Events.isAI)
             {
-                Smash();
-            }   
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    Smash();
+                }      
+            }
         }
     }
     
@@ -61,21 +64,24 @@ public class PlayerController : MonoBehaviour
             if (!Input.GetKey(KeyCode.Z) && !Input.GetKey(KeyCode.Q) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D)) {
                 lastDirectionIntent = Vector3.zero;
             }
-        } else if(!Events.isAI){
-            if (Input.GetKey(KeyCode.UpArrow)) {
-                WalkToUpPlayer2();
-            }
-            if (Input.GetKey(KeyCode.LeftArrow)) {
-                WalkToLeftPlayer2();
-            }
-            if (Input.GetKey(KeyCode.DownArrow)) {
-                WalkToDownPlayer2();
-            }
-            if (Input.GetKey(KeyCode.RightArrow)) {
-                WalkToRightPlayer2();
-            }
-            if (!Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.RightArrow)) {
-                lastDirectionIntent2 = Vector3.zero;
+        } else {
+            if (!Events.isAI)
+            {
+                if (Input.GetKey(KeyCode.UpArrow)) {
+                    WalkToUpPlayer2();
+                }
+                if (Input.GetKey(KeyCode.LeftArrow)) {
+                    WalkToLeftPlayer2();
+                }
+                if (Input.GetKey(KeyCode.DownArrow)) {
+                    WalkToDownPlayer2();
+                }
+                if (Input.GetKey(KeyCode.RightArrow)) {
+                    WalkToRightPlayer2();
+                }
+                if (!Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.RightArrow)) {
+                    lastDirectionIntent2 = Vector3.zero;
+                }   
             }
         }
     }
