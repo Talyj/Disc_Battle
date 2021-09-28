@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -41,9 +40,14 @@ public class BallBehaviour : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("wall") || collision.gameObject.CompareTag("smash"))
+        if (collision.gameObject.CompareTag("wall") || collision.gameObject.CompareTag("player"))
         {
             Bounce(collision.contacts[0].normal);   
+        }
+
+        if (collision.gameObject.CompareTag("smash"))
+        {
+            
         }
     }
 
