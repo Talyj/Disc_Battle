@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
                 Smash();
             }   
         }
-        else
+        else if(!Events.isAI)
         {
             if (Input.GetKeyDown(KeyCode.Return))
             {
@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
             if (!Input.GetKey(KeyCode.Z) && !Input.GetKey(KeyCode.Q) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D)) {
                 lastDirectionIntent = Vector3.zero;
             }
-        } else {
+        } else if(!Events.isAI){
             if (Input.GetKey(KeyCode.UpArrow)) {
                 WalkToUpPlayer2();
             }
