@@ -97,31 +97,61 @@ public class PlayerController : MonoBehaviour
         lastDirectionIntent +=  Vector3.right * playerSpeed * Time.deltaTime;
     }
 
-    public void WalkToUpPlayer2(float timeCall = 0) {
-        for (int i = 0; i < timeCall; i++)
+    public void WalkToUpPlayer2(float timeCall = 0)
+    {
+        if (timeCall == 0)
         {
-            lastDirectionIntent2 +=  Vector3.up * playerSpeed * Time.deltaTime;
+            lastDirectionIntent2 += Vector3.up * playerSpeed * Time.deltaTime;
+        }
+        else
+        {
+            
+            for (int i = 0; i < timeCall; i++)
+            {
+                lastDirectionIntent2 += Vector3.up * playerSpeed * Time.deltaTime;
+            }
         }
     }
 
     public  void WalkToLeftPlayer2(float timeCall = 0) {
-        for (int i = 0; i < timeCall; i++)
+        if (timeCall == 0)
         {
             lastDirectionIntent2 += Vector3.left * playerSpeed * Time.deltaTime;
+        }
+        else
+        {
+            for (int i = 0; i < timeCall; i++)
+            {
+                lastDirectionIntent2 += Vector3.left * playerSpeed * Time.deltaTime;
+            }   
         }
     }
 
     public void WalkToDownPlayer2(float timeCall = 0) {
-        for (int i = 0; i < timeCall; i++)
+        if (timeCall == 0)
         {
             lastDirectionIntent2 += Vector3.down * playerSpeed * Time.deltaTime;
+        }
+        else
+        {
+            for (int i = 0; i < timeCall; i++)
+            {
+                lastDirectionIntent2 += Vector3.down * playerSpeed * Time.deltaTime;
+            }   
         }
     }
 
     public void WalkToRightPlayer2(float timeCall = 0) {
-        for (int i = 0; i < timeCall; i++)
+        if (timeCall == 0)
         {
             lastDirectionIntent2 += Vector3.right * playerSpeed * Time.deltaTime;
+        }
+        else
+        {
+            for (int i = 0; i < timeCall; i++)
+            {
+                lastDirectionIntent2 += Vector3.right * playerSpeed * Time.deltaTime;
+            }   
         }
     }
 
