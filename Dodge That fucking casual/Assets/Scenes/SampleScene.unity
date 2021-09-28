@@ -671,7 +671,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 090069c196e36fd47b966d1938f706de, type: 2}
+  - {fileID: 2100000, guid: 17d13118a30c0914cbb5d29065a55d1c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2349,71 +2349,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1001 &1466381995
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4833032033128026744, guid: 0ef03be38e9dbef48a9f389d2d552fd6, type: 3}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4833032033128026744, guid: 0ef03be38e9dbef48a9f389d2d552fd6, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.27
-      objectReference: {fileID: 0}
-    - target: {fileID: 4833032033128026744, guid: 0ef03be38e9dbef48a9f389d2d552fd6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.68
-      objectReference: {fileID: 0}
-    - target: {fileID: 4833032033128026744, guid: 0ef03be38e9dbef48a9f389d2d552fd6, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4833032033128026744, guid: 0ef03be38e9dbef48a9f389d2d552fd6, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9340327
-      objectReference: {fileID: 0}
-    - target: {fileID: 4833032033128026744, guid: 0ef03be38e9dbef48a9f389d2d552fd6, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4833032033128026744, guid: 0ef03be38e9dbef48a9f389d2d552fd6, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4833032033128026744, guid: 0ef03be38e9dbef48a9f389d2d552fd6, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.3571875
-      objectReference: {fileID: 0}
-    - target: {fileID: 4833032033128026744, guid: 0ef03be38e9dbef48a9f389d2d552fd6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4833032033128026744, guid: 0ef03be38e9dbef48a9f389d2d552fd6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4833032033128026744, guid: 0ef03be38e9dbef48a9f389d2d552fd6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 41.855
-      objectReference: {fileID: 0}
-    - target: {fileID: 4833032033128026745, guid: 0ef03be38e9dbef48a9f389d2d552fd6, type: 3}
-      propertyPath: m_Constraints
-      value: 56
-      objectReference: {fileID: 0}
-    - target: {fileID: 4833032033128026747, guid: 0ef03be38e9dbef48a9f389d2d552fd6, type: 3}
-      propertyPath: m_Name
-      value: Ball
-      objectReference: {fileID: 0}
-    - target: {fileID: 4833032033128026747, guid: 0ef03be38e9dbef48a9f389d2d552fd6, type: 3}
-      propertyPath: m_TagString
-      value: ball
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0ef03be38e9dbef48a9f389d2d552fd6, type: 3}
 --- !u!1 &1525322814
 GameObject:
   m_ObjectHideFlags: 0
@@ -2691,7 +2626,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1604157970}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc4b5de41cbdfc8488e035e4f3c6f3e4, type: 3}
+  m_Script: {fileID: 11500000, guid: affcdde2d327e8c4b95d495511f9a90b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 1541417042}
@@ -3166,10 +3101,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1909346092}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 636085047cf588d43956163cedc42123, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b3ed926a544da944b73c9d1fb870240, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 0
+  life: 3
   victoryDeathMenu: {fileID: 210045872}
 --- !u!54 &1909346098
 Rigidbody:
