@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,14 +9,38 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform smashPointPlayer;
     private static Vector3 lastDirectionIntent;
     private static Vector3 lastDirectionIntent2;
+    public static Vector3 p1Position;
+    public static Vector3 p2Position;
+    public static Vector3 p1DefaultPosition;
+    public static Vector3 p2DefaultPosition;
     private float playerSpeed = 5f;
     public bool isPlayer;
+
+    public void Start()
+    {
+        if (isPlayer)
+        {
+            p1DefaultPosition = gameObject.transform.position;
+        }
+        else
+        {
+            p2DefaultPosition = gameObject.transform.position;
+        }
+    }
 
     void Update() {
         Movement();
         SmashDaBall();
         lastDirectionIntent = lastDirectionIntent.normalized;
         lastDirectionIntent2 = lastDirectionIntent2.normalized;
+        if (isPlayer)
+        {
+            p1Position = gameObject.transform.position;
+        }
+        else
+        {
+            p2Position = gameObject.transform.position;
+        }
     }
 
     private void FixedUpdate() {

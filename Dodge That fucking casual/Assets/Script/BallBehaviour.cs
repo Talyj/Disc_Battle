@@ -3,8 +3,8 @@ using Random = UnityEngine.Random;
 
 public class BallBehaviour : MonoBehaviour
 {
-    private float DirectionX;
-    private float DirectionY;
+    public static Vector3 ballPosition;
+    
     private Vector3 initialVelocity;
     public static float minVelocity = 1f;
 
@@ -13,22 +13,20 @@ public class BallBehaviour : MonoBehaviour
 
     private float ballVelocityUpCD;
     
+    public static Vector3 ballDefaultPosition;
+    
     private void OnEnable()
     {
-        /*X = Random.Range(-10f, 10f);
-        Y = Random.Range(-10f, 10f);
-        Debug.Log("X : " + DirectionX);
-        Debug.Log("Y : " + DirectionY);
-        initialVelocity = new Vector3(X, Y, 0);*/
-        
         initialVelocity = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
         rb = GetComponent<Rigidbody>();
         rb.velocity = initialVelocity;
         ballVelocityUpCD = 15;
+        ballDefaultPosition = gameObject.transform.position;
     }
 
     private void Update()
     {
+        ballPosition = gameObject.transform.position;
         ballVelocityUpCD -= Time.deltaTime;
         if (ballVelocityUpCD <= 0)
         {
