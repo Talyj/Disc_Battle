@@ -1229,6 +1229,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74497909f47f4614882eefb2044755ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smashAreaPlayer: {fileID: 0}
+  smashPointPlayer: {fileID: 0}
   isPlayer: 0
 --- !u!212 &577320513
 SpriteRenderer:
@@ -3345,6 +3347,7 @@ GameObject:
   - component: {fileID: 1604157971}
   - component: {fileID: 1604157972}
   - component: {fileID: 1604157973}
+  - component: {fileID: 1604157974}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3397,6 +3400,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ball: {fileID: 4833032033128026747, guid: 14bc759dd69393c4d9696484aae8b439, type: 3}
+--- !u!114 &1604157974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604157970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72f440ea251170a42921d05bb4a5e64c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerAI: {fileID: 577320512}
 --- !u!1 &1769241568
 GameObject:
   m_ObjectHideFlags: 0
@@ -3566,6 +3582,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74497909f47f4614882eefb2044755ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smashAreaPlayer: {fileID: 0}
+  smashPointPlayer: {fileID: 0}
   isPlayer: 1
 --- !u!212 &1909346094
 SpriteRenderer:

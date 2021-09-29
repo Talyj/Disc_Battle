@@ -60,7 +60,6 @@ public class Events : MonoBehaviour
         //Relancer le spawn de la balle 
     }
 
-    void Update()
     public void ChangeGameMode()
     {
         if (Input.GetKeyDown(KeyCode.F1))
