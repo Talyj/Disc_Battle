@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject Life1;
     [SerializeField] GameObject Life2;
     [SerializeField] GameObject Life3;
+    [SerializeField] Events ev;
+    [SerializeField] PlayerController playerC;
 
 
     void Start()
@@ -33,6 +35,7 @@ public class Player : MonoBehaviour
             life = 0;
             Life3.SetActive(false);
             Time.timeScale = 0f;
+            ev.isInGame = false;
             victoryDeathMenu.SetActive(true);
         }
     }
@@ -42,7 +45,11 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("ball"))
         {
             life--;
-            this.transform.position = new Vector2(0,0);
+            if(playerC.isPlayer) {
+                this.transform.position = new Vector3(-5, 0, 0);
+            } else {
+                this.transform.position = new Vector3(5, 0, 0);
+            }
         }
     }
 }
