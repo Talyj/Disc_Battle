@@ -6,7 +6,7 @@ public class BallBehaviour : MonoBehaviour
     private float DirectionX;
     private float DirectionY;
     private Vector3 initialVelocity;
-    private float minVelocity = 1f;
+    public static float minVelocity = 1f;
 
     private Vector3 lastFrameVelocity;
     private Rigidbody rb;

@@ -1229,8 +1229,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74497909f47f4614882eefb2044755ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smashAreaPlayer: {fileID: 0}
-  smashPointPlayer: {fileID: 0}
+  smashAreaPlayer: {fileID: 1814378966461440956, guid: 76c6f6eeed1de0148950f363eb42a485, type: 3}
+  smashPointPlayer: {fileID: 1362185228}
   isPlayer: 0
 --- !u!212 &577320513
 SpriteRenderer:
@@ -1293,7 +1293,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
-  m_Children: []
+  m_Children:
+  - {fileID: 1362185228}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2706,6 +2707,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1105590384}
   m_CullTransparentMesh: 1
+--- !u!1 &1154893041
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1154893042}
+  m_Layer: 0
+  m_Name: SmashPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1154893042
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154893041}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.15, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1909346096}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1168345923
 GameObject:
   m_ObjectHideFlags: 0
@@ -3032,6 +3063,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1297128628}
   m_CullTransparentMesh: 1
+--- !u!1 &1362185227
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1362185228}
+  m_Layer: 0
+  m_Name: SmashPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1362185228
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362185227}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.15, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 577320515}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1380797823
 GameObject:
   m_ObjectHideFlags: 0
@@ -3582,8 +3643,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74497909f47f4614882eefb2044755ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smashAreaPlayer: {fileID: 0}
-  smashPointPlayer: {fileID: 0}
+  smashAreaPlayer: {fileID: 1814378966461440956, guid: 76c6f6eeed1de0148950f363eb42a485, type: 3}
+  smashPointPlayer: {fileID: 1154893042}
   isPlayer: 1
 --- !u!212 &1909346094
 SpriteRenderer:
@@ -3646,7 +3707,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
-  m_Children: []
+  m_Children:
+  - {fileID: 1154893042}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
