@@ -31,9 +31,10 @@ public class PlayerController : MonoBehaviour
     void Update() {
         Movement();
         SmashDaBall();
-        lastDirectionIntent = lastDirectionIntent.normalized;
+         lastDirectionIntent = lastDirectionIntent.normalized;
         lastDirectionIntent2 = lastDirectionIntent2.normalized;
         lastDirectionIntent2.Normalize();
+        lastDirectionIntent.Normalize();
         if (isPlayer)
         {
             p1Position = gameObject.transform.position;
@@ -162,14 +163,14 @@ public class PlayerController : MonoBehaviour
     public Vector3 WalkToRightPlayer1(float timeCall = 0) {
         if (timeCall == 0)
         {
-            lastDirectionIntent +=  Vector3.right * playerSpeed * Time.deltaTime;   
+            lastDirectionIntent += Vector3.right * playerSpeed * Time.deltaTime;
         }
         else
         {
             for (int i = 0; i < timeCall; i++)
             {
-                lastDirectionIntent +=  Vector3.right * playerSpeed * Time.deltaTime;
-            }
+                lastDirectionIntent += Vector3.right * playerSpeed * Time.deltaTime;
+            }   
         }
         return gameObject.transform.position;
     }
@@ -236,11 +237,11 @@ public class PlayerController : MonoBehaviour
         return gameObject.transform.position;
     }
 
-    public void Smash()
+    public Vector3 Smash()
     {
         GameObject smash = Instantiate(smashAreaPlayer, smashPointPlayer.position, Quaternion.identity);
-        BallMovement.speedBall += 1;
-        Destroy(smash, 0.3f);   
+        Destroy(smash, 0.3f);
+        return smashPointPlayer.transform.position;
     }
 
 }

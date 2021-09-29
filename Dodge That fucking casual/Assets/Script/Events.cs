@@ -18,6 +18,8 @@ public class Events : MonoBehaviour
 
     public void Start() {
         InvokeRepeating("EventXSeconds", 10.0f, 10.0f);
+        BallMovement.isPlaying = false;
+        BallMovement.isPlayingSimu = false;
         isAI = false;
     }
     
@@ -52,7 +54,9 @@ public class Events : MonoBehaviour
         isPaused = false;
     }
 
-    public void Restart() {
+    public void Restart()
+    {
+        BallMovement.speedBall = 5f;
         player1.transform.position = new Vector3(-5, 0, 0);
         player2.transform.position = new Vector3(5, 0, 0);
         Player lifePlayer1 = player1.GetComponent<Player>();
