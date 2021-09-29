@@ -1526,7 +1526,7 @@ GameObject:
   - component: {fileID: 682057109}
   m_Layer: 0
   m_Name: Sud Wall
-  m_TagString: wall
+  m_TagString: horWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -1587,7 +1587,7 @@ GameObject:
   - component: {fileID: 728652523}
   m_Layer: 0
   m_Name: West Wall
-  m_TagString: wall
+  m_TagString: verWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -3041,7 +3041,7 @@ GameObject:
   - component: {fileID: 1217304862}
   m_Layer: 0
   m_Name: North Wall
-  m_TagString: wall
+  m_TagString: horWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -3622,6 +3622,7 @@ GameObject:
   - component: {fileID: 1604157972}
   - component: {fileID: 1604157973}
   - component: {fileID: 1604157974}
+  - component: {fileID: 1604157975}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3689,6 +3690,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAI: {fileID: 577320512}
+--- !u!114 &1604157975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604157970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7b4d6a499f600043bf99a3314b7028d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  p2: {fileID: 577320512}
+  p1: {fileID: 1909346093}
+  children: []
+  nVisits: 0
+  totValue: 0
+  uctValue: 0
 --- !u!1 &1756950320
 GameObject:
   m_ObjectHideFlags: 0
@@ -3838,7 +3857,7 @@ GameObject:
   - component: {fileID: 1769241571}
   m_Layer: 0
   m_Name: East Wall
-  m_TagString: wall
+  m_TagString: verWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295

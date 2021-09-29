@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -9,7 +7,10 @@ public class TreeNode : MonoBehaviour
 {
 
     [SerializeField] private PlayerController p2;
-    
+    [SerializeField] private PlayerController p1;
+    private Vector3 positionP1;
+    private Vector3 positionP2;
+
     static System.Random r = new System.Random();
     public static double epsilon = 1e-6;
     
@@ -17,7 +18,22 @@ public class TreeNode : MonoBehaviour
     public double nVisits, totValue;
     public double uctValue;
 
+    private int randomActionTime;
+    
     public State state;
+
+
+    public void Start()
+    {
+        positionP1 = p1.transform.position;
+        positionP2 = p2.transform.position;
+    }
+
+    public void Update()
+    {
+        //DoRandomMoveP1();
+        Debug.Log(positionP1);
+    }
 
     public TreeNode(State state)
     {
@@ -94,24 +110,55 @@ public class TreeNode : MonoBehaviour
         
     }
 
-    //Type to change
-    public void DoRandomMove(int actionId)
+    public void DoRandomMoveP1()
     {
-        var randomActionTime = Random.Range(10, 30);
-        //randomAction = 0;
-        switch (actionId)
+        var actionIdP1 = Random.Range(0, 5);
+        if (actionIdP1 != 4)
+        {
+            randomActionTime = Random.Range(10, 30);   
+        }
+        switch (actionIdP1)
         {
             case 0:
-                p2.WalkToUpPlayer2(randomActionTime);
+                positionP1 += p1.WalkToUpPlayer1(randomActionTime);
                 break;
             case 1:
-                p2.WalkToDownPlayer2(randomActionTime);
+                positionP1 += p1.WalkToDownPlayer1(randomActionTime);
                 break;
             case 2:
-                p2.WalkToLeftPlayer2(randomActionTime);
+                positionP1 += p1.WalkToLeftPlayer1(randomActionTime);
                 break;
             case 3:
-                p2.WalkToRightPlayer2(randomActionTime);
+                positionP1 += p1.WalkToRightPlayer1(randomActionTime);
+                break;
+            case 4:
+                p2.Smash();
+                break;
+        }
+    }
+    
+    //Type to change
+    public void DoRandomMoveP2()
+    {
+        var actionIdP2 = Random.Range(0, 5);
+        
+        if (actionIdP2 != 4)
+        {
+            randomActionTime = Random.Range(10, 30);   
+        }
+        switch (actionIdP2)
+        {
+            case 0:
+                positionP2 += p2.WalkToUpPlayer2(randomActionTime);
+                break;
+            case 1:
+                positionP2 += p2.WalkToDownPlayer2(randomActionTime);
+                break;
+            case 2:
+                positionP2 += p2.WalkToLeftPlayer2(randomActionTime);
+                break;
+            case 3:
+                positionP2 += p2.WalkToRightPlayer2(randomActionTime);
                 break;
             case 4:
                 p2.Smash();

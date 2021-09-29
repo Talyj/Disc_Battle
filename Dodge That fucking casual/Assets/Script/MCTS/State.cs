@@ -19,14 +19,14 @@ public class State
         if (previousGameState != null)
         {
             this.lastBallPosition = ballPosition;
-            this.ballPosition = BallBehaviour.ballPosition;
+            this.ballPosition = BallMovement.ballPosition;
             this.player1CurrentPosition = PlayerController.p1Position;
             this.player1CurrentPosition = PlayerController.p2Position;
         }
         else
         {
             this.lastBallPosition = lastBallPosition;
-            this.ballPosition = BallBehaviour.ballDefaultPosition;
+            this.ballPosition = BallMovement.ballDefaultPosition;
             this.player1CurrentPosition = PlayerController.p1DefaultPosition;
             this.player2CurrentPosition = PlayerController.p2DefaultPosition;
         }

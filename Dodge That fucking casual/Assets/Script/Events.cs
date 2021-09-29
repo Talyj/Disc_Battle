@@ -53,7 +53,6 @@ public class Events : MonoBehaviour
     }
 
     public void Restart() {
-        BallBehaviour.minVelocity = 1f;
         player1.transform.position = new Vector3(-5, 0, 0);
         player2.transform.position = new Vector3(5, 0, 0);
         Player lifePlayer1 = player1.GetComponent<Player>();
