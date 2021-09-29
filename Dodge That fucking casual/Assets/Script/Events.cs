@@ -5,6 +5,10 @@ using UnityEngine;
 public class Events : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject player1;
+    [SerializeField] GameObject player2;
+    [SerializeField] GameObject victoryMenuJ1;
+    [SerializeField] GameObject victoryMenuJ2;
     public bool isPaused;
     private int i = 0;
 
@@ -27,6 +31,19 @@ public class Events : MonoBehaviour
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
+    }
+
+    public void Restart() {
+        player1.transform.position = new Vector3(-5, 0, 0);
+        player2.transform.position = new Vector3(5, 0, 0);
+        Player lifePlayer1 = player1.GetComponent<Player>();
+        Player lifePlayer2 = player2.GetComponent<Player>();
+        lifePlayer1.life = 3;
+        lifePlayer2.life = 3;
+        victoryMenuJ1.SetActive(false);
+        victoryMenuJ2.SetActive(false);
+        Time.timeScale = 1f;
+        //Relancer le spawn de la balle 
     }
 
     void Update()
