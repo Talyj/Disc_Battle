@@ -9,7 +9,10 @@ public class Events : MonoBehaviour
     [SerializeField] GameObject player2;
     [SerializeField] GameObject victoryMenuJ1;
     [SerializeField] GameObject victoryMenuJ2;
+    [SerializeField] GameObject Menu;
+    private GameObject[] ball;
     public bool isPaused;
+    public bool isInGame;
     public static bool isAI;
     private int i = 0;
 
@@ -36,9 +39,11 @@ public class Events : MonoBehaviour
     }
 
     public void Pause() {
-        pauseMenu.SetActive(true);
-        Time.timeScale = 0f;
-        isPaused = true;
+        if(isInGame == true) {
+            pauseMenu.SetActive(true);
+            Time.timeScale = 0f;
+            isPaused = true;
+        }
     }
 
     public void Resume() {
@@ -57,8 +62,11 @@ public class Events : MonoBehaviour
         lifePlayer2.life = 3;
         victoryMenuJ1.SetActive(false);
         victoryMenuJ2.SetActive(false);
+        Menu.SetActive(false);
         Time.timeScale = 1f;
-        //Relancer le spawn de la balle 
+        isInGame = true;
+        ball = GameObject.FindGameObjectsWithTag("ball");
+        ball[0].transform.position = new Vector3(0, -3, 0);
     }
 
     public void ChangeGameMode()

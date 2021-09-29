@@ -7,8 +7,7 @@ public class BallEvents : MonoBehaviour
 {
     [SerializeField] private GameObject ball;
 
-    private void Start()
-    {
+    public void SpawnBall() {   
         Instantiate(ball, ball.transform.position, Quaternion.identity);
     }
 }
