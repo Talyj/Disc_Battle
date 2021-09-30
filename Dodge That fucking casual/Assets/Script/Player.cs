@@ -5,45 +5,39 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public int life;
-    [SerializeField] GameObject victoryDeathMenu;
-    [SerializeField] GameObject Life1;
-    [SerializeField] GameObject Life2;
-    [SerializeField] GameObject Life3;
+    [SerializeField] GameObject[] objectList; // victoryDeathMenu, Life1, Life2, Life3
     [SerializeField] Events ev;
     [SerializeField] PlayerController playerC;
 
 
-    void Start()
-    {
-        life = 3;   
+    void Start() {
+        this.life = 3;   
     }
 
-    void Update()
-    {
+    void Update() {
         if(life >= 3) {
             life = 3;
-            Life1.SetActive(true);
-            Life2.SetActive(true);
-            Life3.SetActive(true);
+            objectList[1].SetActive(true);
+            objectList[2].SetActive(true);
+            objectList[3].SetActive(true);
         }
         if(life == 2) {
-            Life1.SetActive(false);
+            objectList[1].SetActive(false);
         }
         if(life == 1) {
-            Life2.SetActive(false);
+            objectList[2].SetActive(false);
         }
         if(life <= 0) {
             life = 0;
-            Life3.SetActive(false);
+            objectList[3].SetActive(false);
             Time.timeScale = 0f;
             ev.isInGame = false;
-            victoryDeathMenu.SetActive(true);
+            objectList[0].SetActive(true);
         }
     }
 
-    void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.CompareTag("ball"))
+    void OnCollisionEnter(Collision other) {
+        if (other.gameObject.CompareTag("ball"))  // if ball touch a player, life-- & respawn
         {
             life--;
             if(playerC.isPlayer) {

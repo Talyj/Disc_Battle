@@ -5,14 +5,10 @@ using TMPro;
 
 public class Events : MonoBehaviour
 {
-    [SerializeField] GameObject pauseMenu;
-    [SerializeField] GameObject player1;
-    [SerializeField] GameObject player2;
-    [SerializeField] GameObject victoryMenuJ1;
-    [SerializeField] GameObject victoryMenuJ2;
-    [SerializeField] GameObject menu;
-    [SerializeField] GameObject message;
-    [SerializeField] GameObject timer;
+    [SerializeField] GameObject[] objectList; // pauseMenu, player1, player2, vicMenuJ1, vicMenuJ2, menu, message, timer
+    private Player lifePlayer;
+    private PlayerController playerController;
+    private BallMovement ballVel;
     private TextMeshProUGUI messageText;
     private TextMeshProUGUI timerText;
     private GameObject[] ball;
@@ -28,23 +24,25 @@ public class Events : MonoBehaviour
         InvokeRepeating("EventXSeconds", 15.0f, 15.0f);
         Time.timeScale = 0f;
         isAI = false;
-        messageText = message.GetComponent<TextMeshProUGUI>();
-        timerText = timer.GetComponent<TextMeshProUGUI>();
+        messageText = objectList[6].GetComponent<TextMeshProUGUI>();
+        timerText = objectList[7].GetComponent<TextMeshProUGUI>();
     }
     
     void Update()
     {
         ChangeGameMode();
-        if(Input.GetKeyDown(KeyCode.Escape)) {
+        if(Input.GetKeyDown(KeyCode.Escape)) { //check if game is launched to use pause menu
             if(isPaused) {
-                Resume();
+                Pause(false, 1f);
             } else {
-                Pause();
+                if(isInGame) {
+                    Pause(true, 0f);
+                }
             }
         }
 
         if(isInGame) {
-            timerText = timer.GetComponent<TextMeshProUGUI>();
+            timerText = objectList[7].GetComponent<TextMeshProUGUI>();
             timers += Time.deltaTime;
             int minutes = Mathf.FloorToInt(timers / 60F);
 	        int seconds = Mathf.FloorToInt(timers % 60F);
@@ -53,7 +51,7 @@ public class Events : MonoBehaviour
         }
     }
 
-    public void EventXSeconds() {
+    public void EventXSeconds() { //all possible events, +- ball velocity, +- players velocity & + life players
         if(isInGame == true) {
             i++;
             int chance = Random.Range(1, 100);
@@ -67,15 +65,18 @@ public class Events : MonoBehaviour
                 Invoke("ResetBonusMalus", 10.0f);
             } else if(chance > 41 && chance <= 60) {
                 messageText.SetText("BONUS : SPEEDBOOST");
-                ChangePlayerVelocity(8f);
+                ChangePlayerVelocity(objectList[1], 8f);
+                ChangePlayerVelocity(objectList[2], 8f);
                 Invoke("ResetBonusMalus", 10.0f);
             } else if(chance > 61 && chance <= 80) {
                 messageText.SetText("MALUS : SLOWBOOST");
-                ChangePlayerVelocity(3f);
+                ChangePlayerVelocity(objectList[1], 3f);
+                ChangePlayerVelocity(objectList[2], 3f);
                 Invoke("ResetBonusMalus", 10.0f);
             }  else if(chance > 96 && chance <= 100) { // 5% 
                 messageText.SetText("BONUS : LIFE");
-                ChangeLifePlayer();
+                ChangeLifePlayer(objectList[1], 1);
+                ChangeLifePlayer(objectList[2], 1);
                 Invoke("ResetBonusMalus", 10.0f);
             }
         }
@@ -84,60 +85,48 @@ public class Events : MonoBehaviour
     private void ResetBonusMalus() {
         messageText.SetText("");
         ChangeBallVelocity(5f);
-        ChangePlayerVelocity(5.5f);
+        ChangePlayerVelocity(objectList[1], 5.5f);
+        ChangePlayerVelocity(objectList[2], 5.5f);
     }
 
     private void ChangeBallVelocity(float vel) {
         ball = GameObject.FindGameObjectsWithTag("ball");
-        BallMovement ballVel = ball[0].GetComponent<BallMovement>();
+        ballVel = ball[0].GetComponent<BallMovement>();
         ballVel.ballSpeed = vel;
     }
 
-    private void ChangePlayerVelocity(float vel) {
-        PlayerController playerVel1 = player1.GetComponent<PlayerController>();
-        PlayerController playerVel2 = player2.GetComponent<PlayerController>();
-        playerVel1.playerSpeed = vel;
-        playerVel2.playerSpeed = vel;
+    private void ChangePlayerVelocity(GameObject obj, float vel) {
+        playerController = obj.GetComponent<PlayerController>();
+        playerController.playerSpeed = vel;
     }
 
-    private void ChangeLifePlayer() {
-        Player lifePlayer1 = player1.GetComponent<Player>();
-        Player lifePlayer2 = player2.GetComponent<Player>();
-        lifePlayer1.life += 1;
-        lifePlayer2.life += 1;
+    private void ChangeLifePlayer(GameObject obj, int health) {
+        lifePlayer = obj.GetComponent<Player>();
+        lifePlayer.life += health;
     }
 
-    public void Pause() {
-        if(isInGame == true) {
-            pauseMenu.SetActive(true);
-            Time.timeScale = 0f;
-            isPaused = true;
-        }
+    public void Pause(bool b, float t) {
+        objectList[0].SetActive(b);
+        Time.timeScale = t; 
+        isPaused = b;
     }
 
-    public void Resume() {
-        pauseMenu.SetActive(false);
-        Time.timeScale = 1f;
-        isPaused = false;
-    }
-
-    public void Restart() {
-        player1.transform.position = new Vector3(-5, 0, 0);
-        player2.transform.position = new Vector3(5, 0, 0);
-        Player lifePlayer1 = player1.GetComponent<Player>();
-        Player lifePlayer2 = player2.GetComponent<Player>();
-        lifePlayer1.life = 3;
-        lifePlayer2.life = 3;
-        victoryMenuJ1.SetActive(false);
-        victoryMenuJ2.SetActive(false);
-        menu.SetActive(false);
+    public void Restart() { //restart a party 
+        objectList[1].transform.position = new Vector3(-5, 0, 0); //respawn
+        objectList[2].transform.position = new Vector3(5, 0, 0);
+        ChangeLifePlayer(objectList[1], 3); //reset lifes
+        ChangeLifePlayer(objectList[2], 3);
+        objectList[3].SetActive(false);
+        objectList[4].SetActive(false);
+        objectList[5].SetActive(false);
+        messageText.SetText("");
         Time.timeScale = 1f;
         isInGame = true;
         timers = 0;
         i = 0;
         ball = GameObject.FindGameObjectsWithTag("ball");
         ball[0].transform.position = new Vector3(0, -3, 0);
-        BallMovement ballVel = ball[0].GetComponent<BallMovement>();
+        ballVel = ball[0].GetComponent<BallMovement>();
         ballVel.ballSpeed = 5f;
     }
 

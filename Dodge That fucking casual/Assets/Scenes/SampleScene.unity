@@ -1347,10 +1347,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 3
-  victoryDeathMenu: {fileID: 877418228}
-  Life1: {fileID: 1073019222}
-  Life2: {fileID: 1077644400}
-  Life3: {fileID: 11421259}
+  objectList:
+  - {fileID: 877418228}
+  - {fileID: 1073019222}
+  - {fileID: 1077644400}
+  - {fileID: 11421259}
   ev: {fileID: 1604157972}
   playerC: {fileID: 577320512}
 --- !u!114 &577320512
@@ -3876,6 +3877,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: affcdde2d327e8c4b95d495511f9a90b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectList:
+  - {fileID: 1168345923}
+  - {fileID: 1909346092}
+  - {fileID: 577320509}
+  - {fileID: 877418228}
+  - {fileID: 23372227}
+  - {fileID: 1206563003}
+  - {fileID: 1211733708}
+  - {fileID: 1381546266}
   pauseMenu: {fileID: 1168345923}
   player1: {fileID: 1909346092}
   player2: {fileID: 577320509}
@@ -4447,10 +4457,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 3
-  victoryDeathMenu: {fileID: 23372227}
-  Life1: {fileID: 561453757}
-  Life2: {fileID: 1007532656}
-  Life3: {fileID: 525252204}
+  objectList:
+  - {fileID: 23372227}
+  - {fileID: 561453757}
+  - {fileID: 1007532656}
+  - {fileID: 525252204}
   ev: {fileID: 1604157972}
   playerC: {fileID: 1909346093}
 --- !u!54 &1909346098
