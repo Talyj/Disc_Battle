@@ -5,8 +5,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    //Smash values
     [SerializeField] private GameObject smashAreaPlayer;
     [SerializeField] private Transform smashPointPlayer;
+    
+    //Movement values
     private Vector3 lastDirectionIntent;
     private Vector3 lastDirectionIntent2;
     public float playerSpeed = 5.5f;
@@ -20,6 +23,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void FixedUpdate() {
+        //Move Player1 or Player2
         if(isPlayer) {
             gameObject.transform.localPosition += lastDirectionIntent * (Time.deltaTime * playerSpeed);
         } else {
@@ -121,11 +125,12 @@ public class PlayerController : MonoBehaviour
         return gameObject.transform.position;
     }
 
-    public Vector3 Smash()
+    public void Smash()
     {
+        //Instantiate prefab to make the ball bounce on it
         GameObject smash = Instantiate(smashAreaPlayer, smashPointPlayer.position, Quaternion.identity);
+        //Destroy it soon after
         Destroy(smash, 0.3f);
-        return smashPointPlayer.transform.position;
     }
 
 }

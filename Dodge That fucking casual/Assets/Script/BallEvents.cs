@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BallEvents : MonoBehaviour
 {
+    //Ball value
     [SerializeField] private GameObject ball;
 
     public void SpawnBall() {   

@@ -46,7 +46,6 @@ public class MCTSIA : MonoBehaviour
 
     private int Simulate()
     {
-        var test = 0;
         p1PosSimuEnemy += ChooseRandomAction();
         p2PosSimu += ChooseRandomAction();
         BallPosSimu = BallAction();
@@ -54,6 +53,7 @@ public class MCTSIA : MonoBehaviour
         return 0;
     }
 
+    //Initiate game values
     private void InitActions()
     {
         p1PosSimuEnemy = p1.transform.position;
@@ -62,11 +62,11 @@ public class MCTSIA : MonoBehaviour
         speedBall = 5f;
     }
 
-    
+    //Simulate the ball collision with a wall
     private Vector3 CheckBallCollision(Vector3 ballPos)
     {
         Vector3 newDirection = new Vector3(1, 1, 1);
-        // In order : North, West, South, East
+        // In order walls : North, West, South, East
         if (ballPos.y + ballCollider.bounds.extents.y + 0.3 >= wallsCollider[0].bounds.min.y)
         {
             newDirection.y *= -1;
@@ -90,6 +90,7 @@ public class MCTSIA : MonoBehaviour
         return newDirection;
     }
     
+    //Simulate the ball action
     private Vector3 BallAction()
     {
         Vector3 positionBall = new Vector3();
@@ -97,11 +98,11 @@ public class MCTSIA : MonoBehaviour
         return positionBall;
     }
     
+    //TODO Add the smash to possible moves
     private Vector3 ChooseRandomAction()
     {
         Vector3 positionPlayer = new Vector3();
         var actionId = Random.Range(0, 4);
-        // actionId = 0;
         //0 = Up, 1 = Down, 2 = Left, 3 = Right
         switch (actionId)
         {
