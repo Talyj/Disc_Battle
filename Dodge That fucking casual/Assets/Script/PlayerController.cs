@@ -7,42 +7,16 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private GameObject smashAreaPlayer;
     [SerializeField] private Transform smashPointPlayer;
-    private static Vector3 lastDirectionIntent;
-    private static Vector3 lastDirectionIntent2;
-    public static Vector3 p1Position;
-    public static Vector3 p2Position;
-    public static Vector3 p1DefaultPosition;
-    public static Vector3 p2DefaultPosition;
+    private Vector3 lastDirectionIntent;
+    private Vector3 lastDirectionIntent2;
     public float playerSpeed = 5.5f;
     public bool isPlayer;
 
-    public void Start()
-    {
-        if (isPlayer)
-        {
-            p1DefaultPosition = gameObject.transform.position;
-        }
-        else
-        {
-            p2DefaultPosition = gameObject.transform.position;
-        }
-    }
-
     void Update() {
-        Movement();
+        GetMovement(isPlayer);
         SmashDaBall();
-         lastDirectionIntent = lastDirectionIntent.normalized;
-        lastDirectionIntent2 = lastDirectionIntent2.normalized;
         lastDirectionIntent2.Normalize();
         lastDirectionIntent.Normalize();
-        if (isPlayer)
-        {
-            p1Position = gameObject.transform.position;
-        }
-        else
-        {
-            p2Position = gameObject.transform.position;
-        }
     }
 
     private void FixedUpdate() {
@@ -52,8 +26,8 @@ public class PlayerController : MonoBehaviour
             gameObject.transform.localPosition += lastDirectionIntent2 * (Time.deltaTime * playerSpeed);
         }
     }
-    
-    public void SmashDaBall()
+
+    private void SmashDaBall()
     {
         if (isPlayer)
         {
@@ -74,19 +48,19 @@ public class PlayerController : MonoBehaviour
         }
     }
     
-    private void Movement() {
-        if (isPlayer) {
+    private void GetMovement(bool player) {
+        if (player) {
             if (Input.GetKey(KeyCode.Z)) {
-                WalkToUpPlayer1();
+                WalkPlayer(player, Vector3.up);
             }
             if (Input.GetKey(KeyCode.Q)) {
-                WalkToLeftPlayer1();
+                WalkPlayer(player, Vector3.left);
             }
             if (Input.GetKey(KeyCode.S)) {
-                WalkToDownPlayer1();
+                WalkPlayer(player, Vector3.down);
             }
             if (Input.GetKey(KeyCode.D)) {
-                WalkToRightPlayer1();
+                WalkPlayer(player, Vector3.right);
             }
             if (!Input.GetKey(KeyCode.Z) && !Input.GetKey(KeyCode.Q) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D)) {
                 lastDirectionIntent = Vector3.zero;
@@ -95,16 +69,16 @@ public class PlayerController : MonoBehaviour
             if (!Events.isAI)
             {
                 if (Input.GetKey(KeyCode.UpArrow)) {
-                    WalkToUpPlayer2();
+                    WalkPlayer(player, Vector3.up);
                 }
                 if (Input.GetKey(KeyCode.LeftArrow)) {
-                    WalkToLeftPlayer2();
+                    WalkPlayer(player, Vector3.left);
                 }
                 if (Input.GetKey(KeyCode.DownArrow)) {
-                    WalkToDownPlayer2();
+                    WalkPlayer(player, Vector3.down);
                 }
                 if (Input.GetKey(KeyCode.RightArrow)) {
-                    WalkToRightPlayer2();
+                    WalkPlayer(player, Vector3.right);
                 }
             }
             if (!Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.RightArrow)) {
@@ -112,127 +86,37 @@ public class PlayerController : MonoBehaviour
             }   
         }
     }
-    
-    public Vector3 WalkToUpPlayer1(float timeCall = 0)
+
+    public Vector3 WalkPlayer(bool player, Vector3 direction, float timeCall = 0)
     {
-        if (timeCall == 0)
+        if (player)
         {
-            lastDirectionIntent += Vector3.up * playerSpeed * Time.deltaTime;
-        }
-        else
-        {
-            for (int i = 0; i < timeCall; i++)
+            if (timeCall == 0)
             {
-                lastDirectionIntent += Vector3.up * playerSpeed * Time.deltaTime;
+                lastDirectionIntent += direction * playerSpeed * Time.deltaTime;
+            }
+            else
+            {
+                for (int i = 0; i < timeCall; i++)
+                {
+                    lastDirectionIntent += direction * playerSpeed * Time.deltaTime;
+                }
             }
         }
-
-        return gameObject.transform.position;
-    }
-    
-    public  Vector3 WalkToLeftPlayer1(float timeCall = 0) {
-        if (timeCall == 0)
-        {
-            lastDirectionIntent +=  Vector3.left * playerSpeed * Time.deltaTime;
-        }
         else
         {
-            for (int i = 0; i < timeCall; i++)
-            {            
-                lastDirectionIntent +=  Vector3.left * playerSpeed * Time.deltaTime;
+            if (timeCall == 0)
+            {
+                lastDirectionIntent2 += direction * playerSpeed * Time.deltaTime;
             }
-        }
-        return gameObject.transform.position;
-    }
-    
-    public Vector3 WalkToDownPlayer1(float timeCall = 0) {
-        if (timeCall == 0)
-        {
-            lastDirectionIntent +=  Vector3.down * playerSpeed * Time.deltaTime;
-        }
-        else
-        {
-            for (int i = 0; i < timeCall; i++)
+            else
             {
-                lastDirectionIntent +=  Vector3.down * playerSpeed * Time.deltaTime;
-            } 
-        }
-        return gameObject.transform.position;
-    }
-    
-    public Vector3 WalkToRightPlayer1(float timeCall = 0) {
-        if (timeCall == 0)
-        {
-            lastDirectionIntent += Vector3.right * playerSpeed * Time.deltaTime;
-        }
-        else
-        {
-            for (int i = 0; i < timeCall; i++)
-            {
-                lastDirectionIntent += Vector3.right * playerSpeed * Time.deltaTime;
-            }   
-        }
-        return gameObject.transform.position;
-    }
-
-    public Vector3 WalkToUpPlayer2(float timeCall = 0)
-    {
-        if (timeCall == 0)
-        {
-            lastDirectionIntent2 += Vector3.up * playerSpeed * Time.deltaTime;
-        }
-        else
-        {
+                for (int i = 0; i < timeCall; i++)
+                {
+                    lastDirectionIntent2 += direction * playerSpeed * Time.deltaTime;
+                }
+            }
             
-            for (int i = 0; i < timeCall; i++)
-            {
-                lastDirectionIntent2 += Vector3.up * playerSpeed * Time.deltaTime;
-            }
-        }
-        return gameObject.transform.position;
-    }
-
-    public  Vector3 WalkToLeftPlayer2(float timeCall = 0) {
-        if (timeCall == 0)
-        {
-            lastDirectionIntent2 += Vector3.left * playerSpeed * Time.deltaTime;
-        }
-        else
-        {
-            for (int i = 0; i < timeCall; i++)
-            {
-                lastDirectionIntent2 += Vector3.left * playerSpeed * Time.deltaTime;
-            }   
-        }
-        return gameObject.transform.position;
-    }
-
-    public Vector3 WalkToDownPlayer2(float timeCall = 0) {
-        if (timeCall == 0)
-        {
-            lastDirectionIntent2 += Vector3.down * playerSpeed * Time.deltaTime;
-        }
-        else
-        {
-            for (int i = 0; i < timeCall; i++)
-            {
-                lastDirectionIntent2 += Vector3.down * playerSpeed * Time.deltaTime;
-            }   
-        }
-        return gameObject.transform.position;
-    }
-
-    public Vector3 WalkToRightPlayer2(float timeCall = 0) {
-        if (timeCall == 0)
-        {
-            lastDirectionIntent2 += Vector3.right * playerSpeed * Time.deltaTime;
-        }
-        else
-        {
-            for (int i = 0; i < timeCall; i++)
-            {
-                lastDirectionIntent2 += Vector3.right * playerSpeed * Time.deltaTime;
-            }   
         }
         return gameObject.transform.position;
     }
