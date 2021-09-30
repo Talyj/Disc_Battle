@@ -3842,6 +3842,7 @@ GameObject:
   - component: {fileID: 1604157972}
   - component: {fileID: 1604157973}
   - component: {fileID: 1604157974}
+  - component: {fileID: 1604157975}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3911,6 +3912,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAI: {fileID: 577320512}
+--- !u!114 &1604157975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604157970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a44833cdd6c4ab74a9613c2977bb35b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  p1: {fileID: 1909346093}
+  p2: {fileID: 577320512}
+  wallsCollider:
+  - {fileID: 1217304861}
+  - {fileID: 728652522}
+  - {fileID: 682057108}
+  - {fileID: 1769241570}
 --- !u!1 &1756950320
 GameObject:
   m_ObjectHideFlags: 0
