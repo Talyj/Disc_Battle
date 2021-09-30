@@ -1526,7 +1526,7 @@ GameObject:
   - component: {fileID: 682057108}
   m_Layer: 0
   m_Name: Sud Wall
-  m_TagString: wall
+  m_TagString: horWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -1570,7 +1570,7 @@ GameObject:
   - component: {fileID: 728652522}
   m_Layer: 0
   m_Name: West Wall
-  m_TagString: wall
+  m_TagString: verWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -3141,7 +3141,7 @@ GameObject:
   - component: {fileID: 1217304861}
   m_Layer: 0
   m_Name: North Wall
-  m_TagString: wall
+  m_TagString: horWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -4059,7 +4059,7 @@ GameObject:
   - component: {fileID: 1769241570}
   m_Layer: 0
   m_Name: East Wall
-  m_TagString: wall
+  m_TagString: verWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295

@@ -4,7 +4,8 @@ using Random = UnityEngine.Random;
 public class BallMovement : MonoBehaviour
 {
     public static Vector3 direction;
-    public static float speedBall = 5f;
+    public static float speedBall;
+    public float ballSpeed = 5f;
     public static Vector3 ballPosition;
 
     public static Vector3 ballDefaultPosition;
@@ -22,6 +23,7 @@ public class BallMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        speedBall = ballSpeed;
         transform.position += direction * (Time.deltaTime * speedBall);
     }
 
@@ -44,7 +46,7 @@ public class BallMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("smash"))
         {
             direction.x *= -1;
-            speedBall += 1f;
+            ballSpeed += 1f;
         }
     }
 }

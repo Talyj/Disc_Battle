@@ -34,6 +34,7 @@ public class Events : MonoBehaviour
     
     void Update()
     {
+        Debug.Log(BallMovement.speedBall);
         ChangeGameMode();
         if(Input.GetKeyDown(KeyCode.Escape)) {
             if(isPaused) {
@@ -89,8 +90,8 @@ public class Events : MonoBehaviour
 
     private void ChangeBallVelocity(float vel) {
         ball = GameObject.FindGameObjectsWithTag("ball");
-        BallBehaviour ballVel = ball[0].GetComponent<BallBehaviour>();
-        ballVel.minVelocity = vel;
+        BallMovement ballVel = ball[0].GetComponent<BallMovement>();
+        ballVel.ballSpeed = vel;
     }
 
     private void ChangePlayerVelocity(float vel) {
@@ -137,8 +138,8 @@ public class Events : MonoBehaviour
         i = 0;
         ball = GameObject.FindGameObjectsWithTag("ball");
         ball[0].transform.position = new Vector3(0, -3, 0);
-        BallBehaviour ballVel = ball[0].GetComponent<BallBehaviour>();
-        ballVel.minVelocity = 5f;
+        BallMovement ballVel = ball[0].GetComponent<BallMovement>();
+        ballVel.ballSpeed = 5f;
     }
 
     public void ChangeGameMode()

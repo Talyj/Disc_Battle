@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public static Vector3 p2Position;
     public static Vector3 p1DefaultPosition;
     public static Vector3 p2DefaultPosition;
-    private float playerSpeed = 5.5f;
+    public float playerSpeed = 5.5f;
     public bool isPlayer;
 
     public void Start()
