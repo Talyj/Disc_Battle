@@ -6,9 +6,11 @@ using Random = UnityEngine.Random;
 
 public class RandomIAInit : MonoBehaviour
 {
+    //Player to be controlled values
     [SerializeField] private PlayerController playerAI;
-    private int randomAction;
 
+    //Random action values
+    private int randomAction;
     private float actionCooldown;
     private float randomActionTime;
     private float smashCooldown;
@@ -17,6 +19,7 @@ public class RandomIAInit : MonoBehaviour
     {
         if (Events.isAI)
         {
+            //Can do an action after the timer is 0
             actionCooldown -= Time.deltaTime;
             if (actionCooldown <= 0)
             {
@@ -26,24 +29,24 @@ public class RandomIAInit : MonoBehaviour
         }
     }
 
+    //Do a random action
     private void RandomAction()
     {
         randomAction = Random.Range(0, 5);
         randomActionTime = Random.Range(10, 30);
-        //randomAction = 0;
         switch (randomAction)
         {
             case 0:
-                playerAI.WalkToUpPlayer2(randomActionTime);
+                playerAI.WalkPlayer(false, Vector3.up, randomActionTime);
                 break;
             case 1:
-                playerAI.WalkToDownPlayer2(randomActionTime);
+                playerAI.WalkPlayer(false, Vector3.down, randomActionTime);
                 break;
             case 2:
-                playerAI.WalkToLeftPlayer2(randomActionTime);
+                playerAI.WalkPlayer(false, Vector3.left, randomActionTime);
                 break;
             case 3:
-                playerAI.WalkToRightPlayer2(randomActionTime);
+                playerAI.WalkPlayer(false, Vector3.right, randomActionTime);
                 break;
             case 4:
                 smashCooldown -= Time.deltaTime;
