@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         if(life >= 3) {
+            life = 3;
             Life1.SetActive(true);
             Life2.SetActive(true);
             Life3.SetActive(true);
