@@ -34,7 +34,6 @@ public class Events : MonoBehaviour
     
     void Update()
     {
-        Debug.Log(BallMovement.speedBall);
         ChangeGameMode();
         if(Input.GetKeyDown(KeyCode.Escape)) {
             if(isPaused) {

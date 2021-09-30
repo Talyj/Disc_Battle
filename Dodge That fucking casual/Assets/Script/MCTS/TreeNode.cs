@@ -54,12 +54,12 @@ public class TreeNode : MonoBehaviour
             ballCollider = ball.gameObject.GetComponent<Collider>();
 
             var test = ballCollider.bounds.extents;
-            if (oneTimeUse)
-            {
+            // if (oneTimeUse)
+            // {
                 oneTimeUse = false;
-                // DoRandomAction(p1, positionP1, positionSmashP1, ballPosition, BallMovement.direction,
-                //     BallMovement.speedBall, p2, positionP2, positionSmashP2);
-            }
+                DoRandomAction(p1, positionP1, positionSmashP1, ballPosition, BallMovement.direction,
+                    BallMovement.speedBall, p2, positionP2, positionSmashP2);
+            // }
 
             //var essai = CheckPointCollideWithBall(p1, ballPosition);
             //Simulate();
@@ -123,7 +123,7 @@ public class TreeNode : MonoBehaviour
     private double DoRandomAction(PlayerController player, Vector3 positionPlayer, Vector3 positionSmash, Vector3 ballPosition, Vector3 ballDirection, float speedBall, PlayerController enemyPlayer, Vector3 positionEnemyPlayer, Vector3 positionEnemySmash)
     {
         //while (BallMovement.isPlayingSimu)
-        while (BallMovement.isPlayingSimu)
+        for(int i = 0; i <= 10; i++)
         {
             if (Input.GetKeyDown(KeyCode.J))
             {
@@ -156,7 +156,7 @@ public class TreeNode : MonoBehaviour
                     positionSmash += player.WalkToRightPlayer1(randomActionTime);
                     break;
                 case 4:
-                    positionSmash = player.Smash();
+                    //positionSmash = player.Smash();
                     break;
             }
             
@@ -179,7 +179,7 @@ public class TreeNode : MonoBehaviour
                     positionEnemySmash += enemyPlayer.WalkToRightPlayer1(randomActionTime);
                     break;
                 case 4:
-                    positionEnemySmash = enemyPlayer.Smash();
+                    //positionEnemySmash = enemyPlayer.Smash();
                     break;
             }
 
@@ -193,7 +193,6 @@ public class TreeNode : MonoBehaviour
             {
                 ballDirection.x *= -1;
             }
-            Debug.Log(ballPosition);
             if (actionId == 4)
             {
                 //Check collision ball with smash
@@ -206,6 +205,7 @@ public class TreeNode : MonoBehaviour
                 BallMovement.isPlayingSimu = false;
             }
         }
+        Debug.Log("EndSimu");
         return 0.0;
     }
 
