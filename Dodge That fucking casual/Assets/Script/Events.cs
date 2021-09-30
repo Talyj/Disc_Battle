@@ -60,7 +60,7 @@ public class Events : MonoBehaviour
             int chance = Random.Range(1, 100);
             if(chance <= 20) {
                 messageText.SetText("MALUS : SPEEDBALL");
-                ChangeBallVelocity(15f);
+                ChangeBallVelocity(10f);
                 Invoke("ResetBonusMalus", 10.0f);
             } else if(chance > 21 && chance <= 40) { // 20%
                 messageText.SetText("BONUS : SLOWBALL");
